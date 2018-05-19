@@ -39,6 +39,7 @@ function reset(){
         cards[i].addEventListener('click',clicked);
     }
     tries.innerHTML = 0;
+    sucess_move = 0;
 }
 
 var restart = document.querySelector('.restart');
@@ -89,21 +90,18 @@ function clicked() {
         if(picked_cards.length == 2) {
             tries.innerHTML++;
             if (tries.innerHTML > 10){
-                console.log(stars.childNodes[5].firstChild);
                 stars.childNodes[5].firstChild.classList.add('far'); 
                 stars.childNodes[5].firstChild.classList.remove('fa');
                 starsCount = 2;               
             } 
             if (tries.innerHTML > 20 && tries.innerHTML < 30) {
-                console.log(stars.childNodes[3].firstChild);
                 stars.childNodes[5].firstChild.classList.add('far'); 
                 stars.childNodes[5].firstChild.classList.remove('fa');  
                 stars.childNodes[3].firstChild.classList.add('far'); 
                 stars.childNodes[3].firstChild.classList.remove('fa'); 
                 starsCount = 1;
             } 
-            if (tries.innerHTML > 20) {
-                console.log(stars.childNodes[3].firstChild);
+            if (tries.innerHTML > 30) {
                 stars.childNodes[5].firstChild.classList.add('far'); 
                 stars.childNodes[5].firstChild.classList.remove('fa');  
                 stars.childNodes[3].firstChild.classList.add('far'); 
