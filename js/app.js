@@ -60,6 +60,27 @@ function shuffle(array) {
     return array;
 }
 
+// function for the timer
+var minuteLabel = document.getElementById('minutes');
+var secondLabel = document.getElementById('seconds');
+var totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime(){
+    ++totalSeconds;
+    secondLabel.innerHTML = pad(totalSeconds % 60);
+    minuteLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+    var valueString = val + "";
+    if (valueString.length < 2){
+        return "0" + valueString;
+    } else {
+        return valueString;
+    }
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -160,9 +181,11 @@ function cong(){
     mainDiv.style.display = 'none';
     finishDiv.style.display = 'block';
     if(starsCount !== 1) {
-    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount + " stars";
+    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount 
+            + " stars and your final time is: " + minuteLabel.innerHTML + " minutes and " + secondLabel.innerHTML + " seconds";
     } else {
-    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount + " star";        
+    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount 
+            + " stars and your final time is: " + minuteLabel.innerHTML + " minutes and " + secondLabel.innerHTML + " seconds";        
     }
     playButton.addEventListener('click', function(){
         finishDiv.style.display = 'none';
