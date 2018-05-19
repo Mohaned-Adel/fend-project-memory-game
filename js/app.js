@@ -20,8 +20,7 @@ shuffle(cardValue);
      cards[i].innerHTML = cardValue[i];
     }
 
-var restart = document.querySelector('.restart');
-restart.addEventListener('click', function(){
+function reset(){
     shuffle(cardValue);
     for (var i = 0; i < cards.length; i++) {
         cards[i].innerHTML = cardValue[i];
@@ -31,10 +30,19 @@ restart.addEventListener('click', function(){
         cards[i].classList.remove('shake');
         cards[i].classList.remove('flipInY');
         cards[i].classList.remove('rubberBand');
+        stars.childNodes[5].firstChild.classList.remove('far');
+        stars.childNodes[3].firstChild.classList.remove('far'); 
+        stars.childNodes[1].firstChild.classList.remove('far'); 
+        stars.childNodes[5].firstChild.classList.add('fa'); 
+        stars.childNodes[3].firstChild.classList.add('fa'); 
+        stars.childNodes[1].firstChild.classList.add('fa');          
         cards[i].addEventListener('click',clicked);
     }
     tries.innerHTML = 0;
-});
+}
+
+var restart = document.querySelector('.restart');
+restart.addEventListener('click', reset);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -64,6 +72,8 @@ function shuffle(array) {
 var picked_cards = new Array();
 var can_pick = true;
 var sucess_move = 0;
+var starsCount = 3;
+var stars = document.querySelector('.stars');
 
 function clicked() {
     if(can_pick) {
@@ -73,10 +83,35 @@ function clicked() {
             this.classList.toggle("open");
             this.classList.toggle('show');
             this.classList.toggle('flipInY');
+            this.classList.toggle('rubberBand');
         }
 
         if(picked_cards.length == 2) {
             tries.innerHTML++;
+            if (tries.innerHTML > 10){
+                console.log(stars.childNodes[5].firstChild);
+                stars.childNodes[5].firstChild.classList.add('far'); 
+                stars.childNodes[5].firstChild.classList.remove('fa');
+                starsCount = 2;               
+            } 
+            if (tries.innerHTML > 20 && tries.innerHTML < 30) {
+                console.log(stars.childNodes[3].firstChild);
+                stars.childNodes[5].firstChild.classList.add('far'); 
+                stars.childNodes[5].firstChild.classList.remove('fa');  
+                stars.childNodes[3].firstChild.classList.add('far'); 
+                stars.childNodes[3].firstChild.classList.remove('fa'); 
+                starsCount = 1;
+            } 
+            if (tries.innerHTML > 20) {
+                console.log(stars.childNodes[3].firstChild);
+                stars.childNodes[5].firstChild.classList.add('far'); 
+                stars.childNodes[5].firstChild.classList.remove('fa');  
+                stars.childNodes[3].firstChild.classList.add('far'); 
+                stars.childNodes[3].firstChild.classList.remove('fa');  
+                stars.childNodes[1].firstChild.classList.add('far'); 
+                stars.childNodes[1].firstChild.classList.remove('fa');
+                starsCount = 0; 
+            }
             can_pick = false;
             if(picked_cards[0].innerHTML == picked_cards[1].innerHTML) {
                 setTimeout(function(){
@@ -87,7 +122,9 @@ function clicked() {
                     picked_cards[1].classList.remove('open');
                     picked_cards[1].classList.remove('show');
                     picked_cards[0].classList.remove('flipInY');
-                    picked_cards[1].classList.remove('flipInY');  
+                    picked_cards[1].classList.remove('flipInY');
+                    picked_cards[0].classList.remove('rubberBand');
+                    picked_cards[1].classList.remove('rubberBand');                        
                     picked_cards[0].classList.add('match');
                     picked_cards[1].classList.add('match');
                     picked_cards[0].classList.add('shake');
@@ -95,9 +132,8 @@ function clicked() {
                     picked_cards = new Array();
                     can_pick = true;
                     sucess_move++;
-                    console.log(sucess_move);
-                    if(sucess_move == 8){
-                        alert('well done your movies are: ' + tries.innerHTML);
+                    if(sucess_move == (cards.length/2)){
+                        cong();
                     }
                 }, 500)
             } else {
@@ -116,6 +152,25 @@ function clicked() {
             }
         }
     }
+}
+
+function cong(){
+    const mainDiv = document.getElementById('main')
+    const finishDiv = document.getElementById('finish');
+    const playButton = document.querySelector('.play-again');
+    const score = document.querySelector('.final-score');
+    mainDiv.style.display = 'none';
+    finishDiv.style.display = 'block';
+    if(starsCount !== 1) {
+    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount + " stars";
+    } else {
+    score.innerHTML = "with " + tries.innerHTML + " Moves and " + starsCount + " star";        
+    }
+    playButton.addEventListener('click', function(){
+        finishDiv.style.display = 'none';
+        mainDiv.style.display = 'flex';
+        reset();
+    });
 }
 
  for (var i = 0; i < cards.length; i++) {

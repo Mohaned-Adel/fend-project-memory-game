@@ -5,13 +5,14 @@
     <title>Matching Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/animate.css">
 </head>
 <body>
 
-    <div class="container">
+    <div id="main" class="container">
         <header>
             <h1>Matching Game</h1>
         </header>
@@ -32,10 +33,10 @@
 
         <ul class="deck">
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="far fa-gem"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="far fa-paper-plane"></i>
             </li>
             <li class="card">
                 <i class="fa fa-anchor"></i>
@@ -56,7 +57,7 @@
                 <i class="fa fa-bicycle"></i>
             </li>
             <li class="card">
-                <i class="fa fa-diamond"></i>
+                <i class="far fa-gem"></i>
             </li>
             <li class="card">
                 <i class="fa fa-bomb"></i>
@@ -74,12 +75,22 @@
                 <i class="fa fa-bicycle"></i>
             </li>
             <li class="card">
-                <i class="fa fa-paper-plane-o"></i>
+                <i class="far fa-paper-plane"></i>
             </li>
             <li class="card">
                 <i class="fa fa-cube"></i>
             </li>
         </ul>
+    </div>
+
+    <div id="finish">
+        <div class="content container">
+            <p class="circle animated jackInTheBox"><i class="far fa-check-circle"></i></P>
+            <h3>Congratulations! you won</h3>
+            <p class="final-score"></p>
+            <p>Wooo</p>
+            <button class="play-again">Play Again</button>
+        </div>
     </div>
 
     <script src="js/app.js"></script>
