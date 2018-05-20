@@ -39,6 +39,9 @@ function reset(){
         cards[i].addEventListener('click',clicked);
     }
     tries.innerHTML = 0;
+    minuteLabel.innerHTML = 00;
+    secondLabel.innerHTML = 00;
+    totalSeconds = 0;
     sucess_move = 0;
 }
 
