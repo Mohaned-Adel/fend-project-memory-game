@@ -157,7 +157,7 @@ function clicked() {
                     if(sucess_move == (cards.length/2)){
                         cong();
                     }
-                }, 500)
+                }, 500);
             } else {
                 setTimeout(function(){
                     picked_cards[0].classList.add('rubberBand');
@@ -170,14 +170,14 @@ function clicked() {
                     picked_cards[1].classList.remove('flipInY');                    
                     picked_cards = new Array();
                     can_pick = true;
-                }, 1000)
+                }, 1000);
             }
         }
     }
 }
 
 function cong(){
-    const mainDiv = document.getElementById('main')
+    const mainDiv = document.getElementById('main');
     const finishDiv = document.getElementById('finish');
     const playButton = document.querySelector('.play-again');
     const score = document.querySelector('.final-score');

@@ -148,3 +148,23 @@ h1 {
     padding: 5px 15px;
     cursor: pointer;
 }
+
+@media (max-width: 750px) {
+    #main,
+    #finish {
+        width: 100%;
+    }
+    .deck {
+        width: 325px;
+        min-height: 416px;
+    }
+    .deck .card {
+        height: 60px;
+        width: 60px;
+    }
+    #finish .content {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+}
